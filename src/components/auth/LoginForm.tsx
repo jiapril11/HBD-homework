@@ -1,10 +1,42 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import shortid from "shortid";
+// import {v4 as uuid} from 'uuid??'
+
+interface User {
+  email: string;
+  id: number;
+  password: string;
+}
 
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate();
   const handleLogin = async (values: any) => {
-    alert("TODO 요구사항에 맞추어 기능을 완성해주세요.");
+    // alert("TODO 요구사항에 맞추어 기능을 완성해주세요.");
+
+    const { email, password } = values;
+
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/users?email=${email}&password=${password}`
+      );
+
+      if (response.data.length <= 0) {
+        alert("일치하는 유저를 찾을 수 없습니다.");
+        return false;
+      } else {
+        alert("로그인에 성공하였습니다. 메인 페이지로 이동합니다.");
+        const id = shortid.generate();
+        localStorage.setItem("token", id);
+        localStorage.setItem("email", email);
+        navigate("/");
+      }
+    } catch (err) {
+      alert("일시적인 오류가 발생하였습니다. 고객센터로 연락주세요.");
+    }
 
     // TODO: email과 password를 DB에서 찾아서 로그인 검증
     // TODO: 일치하는 유저가 없는 경우 "일치하는 유저를 찾을 수 없습니다." alert

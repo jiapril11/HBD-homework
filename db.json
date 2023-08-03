@@ -39,6 +39,11 @@
       "email": "asdf",
       "password": "123",
       "id": 8
+    },
+    {
+      "email": "ddd",
+      "password": "dddd",
+      "id": 9
     }
   ],
   "boards": [
@@ -95,6 +100,24 @@
       "contents": "asdfasdf",
       "isDeleted": false,
       "id": 9
+    },
+    {
+      "email": "123",
+      "contents": "test",
+      "isDeleted": false,
+      "id": 10
+    },
+    {
+      "email": "123",
+      "contents": "test2",
+      "isDeleted": false,
+      "id": 11
+    },
+    {
+      "email": "123",
+      "contents": "test3",
+      "isDeleted": false,
+      "id": 12
     }
   ]
 }
